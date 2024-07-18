@@ -34,10 +34,12 @@ cmake_policy(VERSION 3.21)
 # Includes a bunch of basic flags and utilities shared across projects
 # See more at the github repository link below
 include(FetchContent)
+if(NOT DEFINED ZTD_CMAKE_PROJECT_PRELUDE)
 FetchContent_Declare(ztd.cmake
 	GIT_REPOSITORY https://github.com/soasis/cmake
 	GIT_TAG main)
 FetchContent_MakeAvailable(ztd.cmake)
+endif()
 set(CMAKE_PROJECT_INCLUDE ${ZTD_CMAKE_PROJECT_PRELUDE})
 
 # # Project declaration
@@ -121,10 +123,12 @@ option(ZTD_PLATFORM_USE_ENCODING_C "Enable encoding_rs's C bindings with ztd::pl
 
 # # Dependencies
 # ztd.idk
+if(NOT TARGET ztd.idk)
 FetchContent_Declare(ztd.idk
 	GIT_REPOSITORY https://github.com/soasis/idk.git
 	GIT_TAG main)
 FetchContent_MakeAvailable(ztd.idk)
+endif()
 
 # encoding_c
 if (ZTD_PLATFORM_USE_ENCODING_C)
